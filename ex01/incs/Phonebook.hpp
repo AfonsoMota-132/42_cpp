@@ -15,18 +15,35 @@
 
 # include <iostream>
 # include <string>
-class PhoneBook {
-	
-};
 
 class Contact {
 	private:
-
+	std::string	First_Name;
+	std::string	Last_Name;
+	std::string	Nickname;
+	std::string	Phone_Nbr;
+	std::string Dark_Secret;
 	public:
 	Contact();
 	~Contact();
-	std::string	FirstName;
-	std::string	LastName;
+	Contact(std::string First_Name, std::string Last_Name,
+		 std::string Nickname, std::string Phone_Nbr, std::string Dark_Secret);
+	void		print_all_info(void);
+	std::string	get_First_Name(void);
+	std::string	get_Last_Name(void);
+	std::string get_Nickname(void);
+};
 
+class PhoneBook {
+	private:
+		Contact		Contacts[8];
+		int	index;
+		int	is_print(std::string str);
+	public:
+		PhoneBook();
+		~PhoneBook();
+		void	add_contact(void);
+		void	search_contact(void);
+		static void	menu(void);
 };
 #endif
