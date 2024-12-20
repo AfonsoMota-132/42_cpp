@@ -20,6 +20,7 @@ class Zombie {
 		std::string Name;
 	public:
 	Zombie();
+	Zombie(std::string name);
 	~Zombie();
 	void announce();
 };

@@ -12,6 +12,17 @@
 
 #include "../incs/Zombie.hpp"
 
-Zombie::Zombie(std::string str) {
-	Name = str;
+Zombie::Zombie(void) {};
+
+Zombie::~Zombie(void)
+{
+	std::cout << "Zombie :" << Name;
+	std::cout << " has died"<<std::endl;
+}
+
+Zombie::Zombie(std::string name) : Name(name) {};
+
+void	Zombie::announce(void)
+{
+	std::cout << Name << ": BraiiiiiiinnnzzzZ...\n" ;
 }
