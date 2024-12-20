@@ -16,7 +16,7 @@ RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS = $(SRCS:.cpp=.o)
-SRCS = megaphone.cpp
+SRCS = Megaphone.cpp
 
 all: $(NAME)
 
