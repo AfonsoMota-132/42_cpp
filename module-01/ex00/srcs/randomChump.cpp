@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 16:20:24 by afogonca          #+#    #+#             */
-/*   Updated: 2024/12/21 09:25:53 by afogonca         ###   ########.fr       */
+/*   Created: 2024/12/21 09:23:10 by afogonca          #+#    #+#             */
+/*   Updated: 2024/12/21 09:23:57 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/Zombie.hpp"
 
-Zombie::Zombie(void) 
+void	randomChump(std::string name)
 {
-}
-
-Zombie::~Zombie(void)
-{
-	std::cout << "Zombie " << Name;
-	std::cout << ": has died"<<std::endl;
-}
-
-Zombie::Zombie(std::string name) : Name(name) {};
-
-void	Zombie::announce(void)
-{
-	if (Name != "Foo")
-		std::cout << "<" << Name << ">" << ": BraiiiiiiinnnzzzZ...\n" ;
-	else
-		std::cout << "Foo: BraiiiiiiinnnzzzZ...\n" ;
+	Zombie zombie(name);
+	zombie.announce();
 }

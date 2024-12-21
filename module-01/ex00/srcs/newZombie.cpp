@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 16:20:24 by afogonca          #+#    #+#             */
-/*   Updated: 2024/12/21 09:25:53 by afogonca         ###   ########.fr       */
+/*   Created: 2024/12/21 09:20:01 by afogonca          #+#    #+#             */
+/*   Updated: 2024/12/21 09:20:41 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/Zombie.hpp"
 
-Zombie::Zombie(void) 
+Zombie	*newZombie(std::string name)
 {
-}
-
-Zombie::~Zombie(void)
-{
-	std::cout << "Zombie " << Name;
-	std::cout << ": has died"<<std::endl;
-}
-
-Zombie::Zombie(std::string name) : Name(name) {};
-
-void	Zombie::announce(void)
-{
-	if (Name != "Foo")
-		std::cout << "<" << Name << ">" << ": BraiiiiiiinnnzzzZ...\n" ;
-	else
-		std::cout << "Foo: BraiiiiiiinnnzzzZ...\n" ;
+	return (new Zombie(name));
 }
