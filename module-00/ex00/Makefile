@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = megaphone
-CC = c++
+CXX = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
@@ -21,7 +21,7 @@ SRCS = Megaphone.cpp
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) -o $(NAME)
+	$(CXX) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

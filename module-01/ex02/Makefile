@@ -5,20 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/12/21 09:21:40 by afogonca          #+#    #+#              #
-#    Updated: 2024/12/21 09:22:46 by afogonca         ###   ########.fr        #
+#    Created: 2024/12/21 10:09:30 by afogonca          #+#    #+#              #
+#    Updated: 2024/12/21 10:14:15 by afogonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Brainzz
+NAME = ex02
 CXX = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 OBJS = $(SRCS:.cpp=.o)
-
-SRCS = srcs/main.cpp srcs/newZombie.cpp srcs/Zombie.cpp \
-	   srcs/randomChump.cpp
+SRCS = main.cpp
 
 all: $(NAME)
 

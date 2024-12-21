@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = Phonebook
-CC = c++
+CXX = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 OBJS = $(SRCS:.cpp=.o)
@@ -22,7 +22,7 @@ SRCS = srcs/main.cpp srcs/phonebook.cpp \
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

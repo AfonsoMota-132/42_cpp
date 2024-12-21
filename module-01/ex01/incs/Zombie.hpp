@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 16:14:40 by afogonca          #+#    #+#             */
-/*   Updated: 2024/12/21 09:21:25 by afogonca         ###   ########.fr       */
+/*   Created: 2024/12/21 09:38:17 by afogonca          #+#    #+#             */
+/*   Updated: 2024/12/21 09:41:18 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 
-class Zombie
+class	Zombie
 {
 	private:
 		std::string Name;
@@ -23,10 +23,11 @@ class Zombie
 		Zombie();
 		Zombie(std::string name);
 		~Zombie();
-		void announce();
+		void	setName(std::string name);
+		void	announce(void);
 };
 
-Zombie	*newZombie(std::string name);
-void	randomChump(std::string name);
+
+Zombie* zombieHorde(int N, std::string name);
 
 #endif
