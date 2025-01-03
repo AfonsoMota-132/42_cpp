@@ -6,7 +6,7 @@
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 11:39:14 by afogonca          #+#    #+#             */
-/*   Updated: 2024/12/23 12:08:28 by afogonca         ###   ########.fr       */
+/*   Updated: 2024/12/23 11:20:40 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int main(int ac, char **av)
 {
 	std::string file;
-	int			linenum;
 
 	if (ft_check_args(ac, av))
 		return (1);
@@ -31,7 +30,7 @@ std::string ft_readfile(std::string name)
 	std::string		content;
 	std::string		buffer;
 	
-	file.open(name);
+	file.open(name.c_str());
 	if (!file.is_open())
 	{
 		std::cout << "Couldn't open file" << std::endl;

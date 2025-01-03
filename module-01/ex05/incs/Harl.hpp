@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 09:38:17 by afogonca          #+#    #+#             */
-/*   Updated: 2024/12/21 09:41:18 by afogonca         ###   ########.fr       */
+/*   Created: 2025/01/03 10:16:09 by afogonca          #+#    #+#             */
+/*   Updated: 2025/01/03 10:21:48 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#ifndef HARL_HPP
+# define HARL_HPP
 
+# include <string>
 # include <iostream>
-# include <boost/lexical_cast.hpp>
 
-class	Zombie
-{
+class Harl {
 	private:
-		std::string Name;
+	void	Debug(void);
+	void	Info(void);
+	void	Warning(void);
+	void	Error(void);
+
 	public:
-		Zombie();
-		Zombie(std::string name);
-		~Zombie();
-		void	setName(std::string name);
-		void	announce(void);
+	Harl(void);
+	~Harl(void);
+	void	Complain(std::string level);
 };
-
-
-Zombie* zombieHorde(int N, std::string name);
 
 #endif

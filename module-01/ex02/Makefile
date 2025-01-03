@@ -12,7 +12,7 @@
 
 NAME = ex02
 CXX = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 OBJS = $(SRCS:.cpp=.o)
@@ -21,7 +21,7 @@ SRCS = main.cpp
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

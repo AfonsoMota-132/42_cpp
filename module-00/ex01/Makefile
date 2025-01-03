@@ -31,6 +31,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f gdb
 
 re: fclean all
 

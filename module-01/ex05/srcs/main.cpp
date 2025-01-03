@@ -5,30 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 09:51:20 by afogonca          #+#    #+#             */
-/*   Updated: 2024/12/21 10:01:47 by afogonca         ###   ########.fr       */
+/*   Created: 2025/01/03 10:23:28 by afogonca          #+#    #+#             */
+/*   Updated: 2025/01/03 10:37:30 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/Zombie.hpp"
+#include "../incs/Harl.hpp"
+
+std::string ft_trim(std::string str)
+{
+	size_t	start;
+	size_t	end;
+	std::string	string;
+
+	start = str.find_first_not_of(' ');
+	end = str.find_last_not_of(' ');
+	string = str.substr(start, end - start + 1);
+	return (string);
+}
+
+std::string	ft_capitalize(std::string str)
+{
+	int		len;
+	std::string	lowered;
+
+	len = str.length();
+	for(int i = 0; i < len; i++)
+		lowered += std::toupper(str[i]);
+	return (lowered);
+}
 
 int	main(void)
 {
-	std::string name;
+	Harl Harl;
 	std::string input;
-	std::size_t nbr;
+	std::string test;
 
-	std::cout << "Enter the name of the zombie: ";
-	std::cin >> name;
-	std::cout << "Enter number of zombifes: ";
+	std::cout << "Enter a level: ";
 	std::cin >> input;
-	nbr = boost::lexical_cast<std::size_t>(input);
-	Zombie	*horde = zombieHorde(nbr, name);
-	for (std::size_t i = 0; i < nbr; i++)
-	{
-		std::cout << "index " << i << " ";
-		horde[i].announce();
-	}
-	delete [] horde;
+	input = ft_capitalize(input);
+	Harl.Complain(input);
 	return (0);
 }

@@ -22,9 +22,9 @@ int main()
 	Weapon weaponB;
 
 	std::cout << "Enter the name of the humanA: ";
-	std::getline(std::cin, name);
+	std::cin >> name;
 	std::cout << "Enter the name of the weaponA: ";
-	std::getline(std::cin, weap);
+	std::cin >> weap;
 	if (name.empty() || weap.empty())
 	{
 		std::cout << "Empty inputs" << std::endl;
@@ -34,9 +34,9 @@ int main()
 	HumanA	humanA(name, weaponA);
 
 	std::cout << "Enter the name of the humanB: ";
-	std::getline(std::cin, name);
+	std::cin >> name;
 	std::cout << "Enter the name of the weaponB: ";
-	std::getline(std::cin, weap);
+	std::cin >> weap;
 	if (name.empty())
 	{
 		std::cout << "Empty inputs" << std::endl;

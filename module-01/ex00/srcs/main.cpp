@@ -20,17 +20,18 @@ int main(void)
 	std::cout << "	Creating Zombie" << std::endl;
 	std::cout << "==============================" << std::endl;
 	std::cout << "Zombies's Name: ";
-	std::getline(std::cin, name);
+	std::cin >> name;
 	if (name.empty())
 		std::cout << "Empty name" << std::endl;
 	else
 	{
 		Zombie *zombie = newZombie(name);
+		std::cout << "Manual annonce" << std::endl;
 		zombie->announce();
 		delete zombie;
 	}
 	std::cout << "Zombies's Name: ";
-	std::getline(std::cin, name);
+   std::cin >> name;
 	if (name.empty())
 		std::cout << "Empty name" << std::endl;
 	else

@@ -15,9 +15,11 @@
 std::string ft_replace(std::string line, std::string s1, std::string s2)
 {
 	std::string	temp;
-	int			start = 0;
-	int			pos = 0;
+	unsigned long	start;
+	unsigned long	pos = 0;
 
+	start = 0;
+	pos = 0;
 	while ((pos = line.find(s1, start)) != std::string::npos && line[pos])
 	{
 		temp.append(line, start, pos - start);
@@ -33,7 +35,7 @@ void		ft_create_file(std::string name, std::string content)
 	std::string filename;
 	filename.append(name, 0, name.rfind("."));
 	filename.append(".replace");
-	std::ofstream	file { filename };
+	std::ofstream file(filename.c_str());
 	file << content;
 	file.close();
 }
