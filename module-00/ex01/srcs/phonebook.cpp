@@ -18,38 +18,52 @@ PhoneBook::~PhoneBook(void) {};
 
 void	PhoneBook::menu(void)
 {
-	std::cout << "==>	Add" << std::endl;
-	std::cout << "==>	Search" << std::endl;
-	std::cout << "==>	Exit" << std::endl;
-	std::cout << "Enter a command: ";
-}
-
-int		PhoneBook::is_print(std::string str)
-{
-	for (int i = 0; i < 10; i++)
-	{
-		
-	}
-	return (0);
+	std::cout << "====================" << std::endl;
+	std::cout << "   	Add" << std::endl;
+	std::cout << "   	Search" << std::endl;
+	std::cout << "   	Exit" << std::endl;
+	std::cout << "====================" << std::endl;
+	std::cout << "Enter a command: "<< std::endl;
 }
 
 void	print_search(std::string str)
 {
 	std::cout << "|";
-	for (int i = 0; i < 10; i++)
+	for (unsigned long i = 0; i < 10; i++)
 	{
 		if (i == 9 && str.length() > 10)
 		{
 			std::cout << ".";
 			break ;
-		}	
-		std::cout << str[i];
+		}
+		if (i >= str.length())
+			std::cout << " ";
+		else
+			std::cout << str[i];
 	}
+}
+
+int	ft_is_nbr(std::string str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i] != '\0' && str[i] != '\n')
+	{
+		std::cout << str[i] << std::endl;
+		if (!(str[i] >= '0' && str[i] < '9'))
+		{
+			printf("%d is not a number\n", str[i]);
+			return (0);
+		}
+	}
+	return (1);
 }
 
 void	PhoneBook::search_contact(void)
 {
 	std::string	input;
+	int	index;
 
 	for(int i = 0; i < 8; i++)
 	{
@@ -65,13 +79,20 @@ void	PhoneBook::search_contact(void)
 		std::cout << std::endl;
 	}
 	std::cout << "Enter the index of the contact you want to see: ";
-	std::getline(std::cin, input);
+	std::cin >> input;
 	if (input.empty())
 	{
 		std::cout << "You didnt enter an index" << std::endl;
 		return ;
 	}
-	int index = std::stoi(input);
+	if(!ft_is_nbr(input))
+	{
+		std::cout << ft_is_nbr(input) << std::endl;
+		std::cout << input << "." << std::endl;
+		std::cout << "Index is not a number" << std::endl;
+		return ;
+	}
+	index = boost::lexical_cast<int>(input);
 	if (index < 0 || index > 7)
 	{
 		std::cout << "Invalid index" << std::endl;
@@ -94,25 +115,19 @@ void	PhoneBook::add_contact(void)
 	std::string	dark_secret;
 
 	std::cout << "First name: " << std::endl;
-	std::getline(std::cin, first_name);
+	std::cin >> first_name;	
 	std::cout << "Last name: " << std::endl;
-	std::getline(std::cin, last_name);
+	std::cin >> last_name;
 	std::cout << "Nickname: " << std::endl;
-	std::getline(std::cin, nickname);
+	std::cin >> nickname;
 	std::cout << "Phone number: " << std::endl;
-	std::getline(std::cin, phone_number);
+	std::cin >> phone_number;
 	std::cout << "Dark secret: " << std::endl;
-	std::getline(std::cin, dark_secret);
+	std::cin >> dark_secret;
 	if (first_name.empty() || last_name.empty() || nickname.empty()
 		|| phone_number.empty() || dark_secret.empty())
 	{
 		std::cout << "One or more fields are empty" << std::endl;
-		return ;
-	}
-	if	(is_print(first_name) || is_print(last_name) || is_print(nickname)
-		|| is_print(phone_number) || is_print(dark_secret))
-	{
-		std::cout << "One or more fields contain invalid characters" << std::endl;
 		return ;
 	}
 	this->Contacts[this->index] = Contact(first_name, last_name, nickname,

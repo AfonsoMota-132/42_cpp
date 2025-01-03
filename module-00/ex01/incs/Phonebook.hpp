@@ -15,6 +15,8 @@
 
 # include <iostream>
 # include <string>
+# include <stdio.h>
+# include <boost/lexical_cast.hpp>
 
 class Contact {
 	private:
@@ -38,7 +40,6 @@ class PhoneBook {
 	private:
 		Contact		Contacts[8];
 		int	index;
-		int	is_print(std::string str);
 	public:
 		PhoneBook();
 		~PhoneBook();

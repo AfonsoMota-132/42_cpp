@@ -14,7 +14,7 @@
 
 std::string	ft_str_to_upper(std::string str)
 {
-	for (int i = 0; i < str.length(); i++)
+	for (std::string::size_type i = 0; i < str.length(); i++)
 		str[i] = std::toupper(str[i]);
 	return (str);
 }
@@ -28,9 +28,8 @@ int	main(void)
 	while (1)
 	{
 		phonebook.menu();
-		std::getline(std::cin, command);
+		std::cin >> command;
 		command = ft_str_to_upper(command);
-		/*std::cout << command << std::endl;*/
 		if (command == "ADD")
 			phonebook.add_contact();
 		if (command == "SEARCH")
