@@ -15,15 +15,14 @@
 int	main(void)
 {
 	Fixed a;
-	Fixed b(a);
-	Fixed c = b;
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	
-	a.setRawBits(42);
-	std::cout << a.getRawBits() << std::endl;
-	b.setRawBits(420);
-	std::cout << b.getRawBits() << std::endl;
+	const Fixed b(42.42f);
+	const Fixed c = b;
+	std::cout << "Float a: " << a << std::endl;
+	std::cout << "Float b: " << b << std::endl;
+	std::cout << "Float c: " << c << std::endl;
+
+	std::cout << "Int a: " << a.toInt() << std::endl;
+	std::cout << "Int b: " << b.toInt() << std::endl;
+	std::cout << "Int c: " << c.toInt() << std::endl;
 	return (0);
 }
