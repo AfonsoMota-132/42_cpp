@@ -13,7 +13,7 @@
 NAME = megaphone
 CXX = c++
 RM = rm -f
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror 
 
 OBJS = $(SRCS:.cpp=.o)
 SRCS = Megaphone.cpp
