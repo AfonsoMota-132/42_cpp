@@ -15,7 +15,7 @@ CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-SRCS = srcs/main.cpp srcs/Fixed.cpp srcs/Point.cpp
+SRCS = srcs/main.cpp srcs/Fixed.cpp srcs/Point.cpp srcs/bsp.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

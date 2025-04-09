@@ -30,12 +30,18 @@ std::string ft_replace(std::string line, std::string s1, std::string s2)
 	return (temp);
 }
 
-void		ft_create_file(std::string name, std::string content)
+int	ft_create_file(std::string name, std::string content)
 {
 	std::string filename;
 	filename.append(name, 0, name.rfind("."));
 	filename.append(".replace");
 	std::ofstream file(filename.c_str());
+	if (!file.is_open())
+	{
+		std::cerr << "Could not open file for writing" << std::endl;
+		return (1);
+	}
 	file << content;
 	file.close();
+	return (0);
 }

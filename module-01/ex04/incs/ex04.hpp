@@ -20,7 +20,7 @@
 #include <fstream>
 
 int			ft_check_args(int ac, char **av);
-void		ft_create_file(std::string name, std::string content);
+int			ft_create_file(std::string name, std::string content);
 std::string ft_readfile(std::string name);
 std::string	ft_replace(std::string line, std::string s1, std::string s2);
 

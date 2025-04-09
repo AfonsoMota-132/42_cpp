@@ -22,7 +22,10 @@ int	main(void)
 	std::cin >> name;
 	std::cout << "Enter number of zombifes: ";
 	std::cin >> input;
-	nbr = boost::lexical_cast<std::size_t>(input);
+	if (!ft_is_nbr(input))
+		return (1);
+	nbr = ft_atoi(input);
+	std::cout << nbr << std::endl;
 	Zombie	*horde = zombieHorde(nbr, name);
 	for (std::size_t i = 0; i < nbr; i++)
 	{
@@ -31,4 +34,40 @@ int	main(void)
 	}
 	delete [] horde;
 	return (0);
+}
+
+int	ft_atoi(const std::string& str)
+{
+	int		result = 0;
+	int		mult = 1;
+	size_t	i = 0;
+
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			mult *= -1;
+		i++;
+	}
+	while (i < str.length() && std::isdigit(str[i]))
+	{
+		result = result * 10 + static_cast<int>(str[i] - '0');
+		i++;
+	}
+	return (result * mult);
+}
+
+int	ft_is_nbr(std::string str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i] != '\0' && str[i] != '\n')
+	{
+		if (!(str[i] >= '0' && str[i] < '9'))
+		{
+			std::cout << str << " is not a number" << std::endl;
+			return (0);
+		}
+	}
+	return (1);
 }

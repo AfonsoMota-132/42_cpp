@@ -14,7 +14,7 @@
 # define ZOMBIE_HPP
 
 # include <iostream>
-# include <boost/lexical_cast.hpp>
+
 
 class	Zombie
 {
@@ -28,7 +28,8 @@ class	Zombie
 		void	announce(void);
 };
 
-
+int		ft_atoi(const std::string& str);
+int		ft_is_nbr(std::string str);
 Zombie* zombieHorde(int N, std::string name);
 
 #endif

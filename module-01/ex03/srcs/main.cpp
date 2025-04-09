@@ -32,11 +32,12 @@ int main()
 	}
 	weaponA.setType(weap);
 	HumanA	humanA(name, weaponA);
+	weap.erase();
 
 	std::cout << "Enter the name of the humanB: ";
 	std::cin >> name;
-	std::cout << "Enter the name of the weaponB: ";
-	std::cin >> weap;
+	// std::cout << "Enter the name of the weaponB: ";
+	// std::cin >> weap;
 	if (name.empty())
 	{
 		std::cout << "Empty inputs" << std::endl;

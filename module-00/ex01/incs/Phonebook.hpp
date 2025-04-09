@@ -16,7 +16,7 @@
 # include <iostream>
 # include <string>
 # include <stdio.h>
-# include <boost/lexical_cast.hpp>
+# include <csignal>
 
 class Contact {
 	private:
@@ -43,8 +43,8 @@ class PhoneBook {
 	public:
 		PhoneBook();
 		~PhoneBook();
-		void	add_contact(void);
-		void	search_contact(void);
+		int		add_contact(void);
+		int		search_contact(void);
 		static void	menu(void);
 };
 #endif

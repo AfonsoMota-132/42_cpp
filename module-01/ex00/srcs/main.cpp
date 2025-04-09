@@ -31,12 +31,10 @@ int main(void)
 		delete zombie;
 	}
 	std::cout << "Zombies's Name: ";
-   std::cin >> name;
+	std::cin >> name;
 	if (name.empty())
 		std::cout << "Empty name" << std::endl;
 	else
-	{
 		randomChump(name);
-	}
 	return (0);
 }

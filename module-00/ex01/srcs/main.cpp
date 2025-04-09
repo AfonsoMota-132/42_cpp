@@ -19,23 +19,34 @@ std::string	ft_str_to_upper(std::string str)
 	return (str);
 }
 
+void	ft_signal(int sig)
+{
+	std::cout << "\n[Interrupt detected — exiting...]" << std::endl;
+	close (0);
+}
 int	main(void)
 {
 	PhoneBook	phonebook;
 	std::string	command;
 
 	phonebook = PhoneBook();
+	std::signal(SIGINT, &ft_signal);
 	while (1)
 	{
 		phonebook.menu();
 		std::cin >> command;
+		if (!command.size())
+			return (1);
 		command = ft_str_to_upper(command);
 		if (command == "ADD")
-			phonebook.add_contact();
+			if (phonebook.add_contact())
+				return (1);
 		if (command == "SEARCH")
-			phonebook.search_contact();
+			if (phonebook.search_contact())
+				return (1);
 		if (command == "EXIT")
 			break ;
+		command.clear();
 	}
 	return (0);
 }

@@ -51,8 +51,6 @@ void	Harl::Complain(std::string level)
 	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 	for (std::size_t i = 0; i < 4; i++) {
-		std::cout << levels[i] << std::endl;
-		std::cout << level << std::endl;
 		if (level == levels[i]) {
 			(this->*funcs[i])();
 			break;

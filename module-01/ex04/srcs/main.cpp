@@ -20,7 +20,8 @@ int main(int ac, char **av)
 		return (1);
 	file = ft_readfile(av[1]);
 	file = ft_replace(file, av[2], av[3]);
-	ft_create_file(av[1], file);
+	if (ft_create_file(av[1], file))
+		return (1);
 	return (0);
 }
 
@@ -34,7 +35,8 @@ std::string ft_readfile(std::string name)
 	if (!file.is_open())
 	{
 		std::cout << "Couldn't open file" << std::endl;
-		return (NULL);
+		content.erase();
+		return (content);
 	}
 	else
 	{
@@ -54,6 +56,11 @@ int	ft_file_exists(const std::string& name)
 	return ( access( name.c_str(), F_OK ) != -1 );
 }
 
+int	ft_file_reads(const std::string& name)
+{
+	return ( access( name.c_str(), R_OK ) != -1 );
+}
+
 int	ft_check_args(int ac, char **av)
 {
 	struct stat s;
@@ -66,6 +73,11 @@ int	ft_check_args(int ac, char **av)
 	if (!ft_file_exists(av[1]))
 	{
 		std::cout << "File doesn't exist" << std::endl;
+		return (1);
+	}
+	if (!ft_file_reads(av[1]))
+	{
+		std::cout << "File doesn't have read permissions" << std::endl;
 		return (1);
 	}
 	stat(av[1],&s);
