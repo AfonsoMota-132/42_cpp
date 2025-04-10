@@ -46,3 +46,5 @@ unsigned int ClapTrap::GetHp(void) const { return (this->Hp); }
 unsigned int ClapTrap::GetEp(void) const { return (this->Ep); }
 
 unsigned int ClapTrap::GetAd(void) const { return (this->Ad); }
+
+bool

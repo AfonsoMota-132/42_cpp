@@ -14,7 +14,7 @@
 
 float sign(Point point, Point p1, Point p2)
 {
-	return (point.getX().toFloat() - p1.getX().toFloat()) *
+	return (point.getX().toFloat() - p2.getX().toFloat()) *
 		(p1.getY().toFloat() - p2.getY().toFloat()) -
 		(p1.getX().toFloat() - p2.getX().toFloat()) *
 		(point.getY().toFloat() - p2.getY().toFloat());

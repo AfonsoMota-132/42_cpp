@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/09 19:21:14 by afogonca          #+#    #+#             */
-/*   Updated: 2025/04/09 19:39:45 by afogonca         ###   ########.fr       */
+/*   Created: 2025/04/10 11:05:00 by afogonca          #+#    #+#             */
+/*   Updated: 2025/04/10 11:05:03 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ class ClapTrap
 		unsigned int	GetHp(void) const;
 		unsigned int	GetEp(void) const;
 		unsigned int	GetAd(void) const;
+		bool			GetStatus(void) const;
 
-		void	Attack(const std::string& target)
+		void	Attack(const std::string& target);
 };
 #endif
