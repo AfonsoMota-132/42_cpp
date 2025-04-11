@@ -6,7 +6,7 @@
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:49:47 by afogonca          #+#    #+#             */
-/*   Updated: 2025/04/09 20:14:19 by afogonca         ###   ########.fr       */
+/*   Updated: 2025/04/11 09:43:46 by afogonca         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,58 @@ unsigned int ClapTrap::GetEp(void) const { return (this->Ep); }
 
 unsigned int ClapTrap::GetAd(void) const { return (this->Ad); }
 
-bool
+void ClapTrap::SetName(std::string name) { this->Name = name; }
+
+bool ClapTrap::GetStatus(int ep) const {
+  if (this->Hp == 0) {
+    std::cout << "ClapTrap " << this->Name << " is dead!" << std::endl;
+    return (false);
+  } else if (this->Ep == 0 && ep) {
+    std::cout << "ClapTrap " << this->Name << " has no ep left!" << std::endl;
+    return (false);
+  }
+  return (true);
+}
+
+void ClapTrap::Attack(const std::string &target) {
+  if (this->GetStatus(1)) {
+    std::cout << "ClapTrap " << this->Name << " attacks " << target
+              << ", causing" << this->Ad << " points of damage!" << std::endl;
+    this->Ep--;
+  }
+}
+
+void ClapTrap::TakeDamage(unsigned int amount) {
+  if (this->GetStatus(0)) {
+    std::cout << "ClapTrap " << this->Name << " got attacked ";
+    std::cout << ", taking " << amount << " points of damage!";
+    if (amount >= this->Hp)
+      this->Hp = 0;
+    else
+      this->Hp -= amount;
+    if (this->Hp <= 0) {
+      this->Hp = 0;
+      std::cout << "And is dead!" << std::endl;
+    } else
+      std::cout << "And has now " << this->Hp << "HP!" << std::endl;
+  }
+}
+
+void ClapTrap::BeRepaired(unsigned int amount) {
+  if (this->GetStatus(1) && this->Hp != 10) {
+    std::cout << "ClapTrap " << this->Name << " got repaired ";
+    std::cout << ", healing " << amount << " points!";
+    this->Ep--;
+    if (amount >= 10 || amount + Hp >= 10)
+      this->Hp = 10;
+    else
+      this->Hp += amount;
+    if (this->Hp >= 10) {
+      this->Hp = 10;
+      std::cout << "And is now Full HP!" << std::endl;
+    } else
+      std::cout << "And has now " << this->Hp << "HP!" << std::endl;
+  } else if (this->Hp == 10)
+    std::cout << "ClapTrap " << this->Name << " is already Full HP!"
+              << std::endl;
+}
