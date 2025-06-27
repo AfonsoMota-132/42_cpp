@@ -1,13 +1,28 @@
-// Created by tde-sous on 26-02-2024.
-#include "ShrubberyCreationForm.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 08:58:17 by afogonca          #+#    #+#             */
+/*   Updated: 2025/06/27 09:01:07 by afogonca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("", 145, 137), Target("") {
-  std::cout << "[ShrubberyCreationForm] Default constructor called." << std::endl;
+#include "../incs/ShrubberyCreationForm.hpp"
+
+ShrubberyCreationForm::ShrubberyCreationForm()
+    : AForm("", 145, 137), Target("") {
+  std::cout << "[ShrubberyCreationForm] Default constructor called."
+            << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
     : AForm(target, 145, 137), Target(target) {
-  std::cout << "[ShruberryShrubberyCreationFormCreationForm] Constructor called." << std::endl;
+  std::cout
+      << "[ShruberryShrubberyCreationFormCreationForm] Constructor called."
+      << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)

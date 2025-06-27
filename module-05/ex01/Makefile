@@ -6,14 +6,14 @@
 #    By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/24 20:34:28 by afogonca          #+#    #+#              #
-#    Updated: 2024/11/24 20:39:10 by afogonca         ###   ########.fr        #
+#    Updated: 2025/06/27 08:56:15 by afogonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Form
 CXX = c++
 RM = rm -f
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -I"./incs"
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 SRCS :=  srcs/main.cpp srcs/Bureaucrat.cpp srcs/Form.cpp
 
