@@ -17,6 +17,8 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <iostream>
+#include <cmath>
 
 #define DIGITS "0123456789"
 
@@ -31,7 +33,9 @@ private:
   static bool IsInt(const std::string &representation);
   static bool IsFloat(const std::string &representation);
   static bool IsDouble(const std::string &representation);
+  static bool IsInfinite(const std::string &representation);
   static void ConvertFromChar(const std::string &representation);
+  static void ConvertFromInfinite(const std::string &representation);
   static void ConvertToNumber(const std::string &representation,
                               long double number);
   static void ConvertToChar(const char &c);

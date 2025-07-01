@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../incs/ScalarConverter.hpp"
 
 ScalarConverter::ScalarConverter() {}
@@ -77,6 +76,14 @@ bool ScalarConverter::IsDouble(const std::string &representation) {
   return (!decimalPart.empty() && !fractionalPart.empty());
 }
 
+bool ScalarConverter::IsInfinite(const std::string &representation) {
+  if (representation == "-inff" || representation == "+inff" ||
+      representation == "nanf" || representation == "-inf" ||
+      representation == "+inf" || representation == "nan")
+    return true;
+  return false;
+}
+
 void ScalarConverter::ConvertFromChar(const std::string &representation) {
 
   ConvertToChar(representation[0]);
@@ -125,6 +132,27 @@ void ScalarConverter::ConvertToNumber(const std::string &representation,
               << std::endl;
 }
 
+void ScalarConverter::ConvertFromInfinite(const std::string &representation) {
+  char *end;
+  double dValue = std::strtod(representation.c_str(), &end);
+  float fValue = static_cast<float>(dValue);
+
+  std::cout << "char: overflows" << std::endl;
+  std::cout << "int: overflows" << std::endl;
+  if (std::isnan(fValue))
+    std::cout << "float: nanf" << std::endl;
+  else if (std::isinf(fValue))
+    std::cout << "float: " << fValue << "f" << std::endl;
+  else
+    std::cout << "float: " << fValue << "f" << std::endl;
+  if (std::isnan(dValue))
+    std::cout << "double: nan" << std::endl;
+  else if (std::isinf(dValue))
+    std::cout << "double: " << dValue << std::endl;
+  else
+    std::cout << "double: " << dValue << std::endl;
+}
+
 void ScalarConverter::Convert(const std::string &representation) {
   if (IsChar(representation))
     ConvertFromChar(representation);
@@ -134,6 +162,8 @@ void ScalarConverter::Convert(const std::string &representation) {
     ConvertToNumber(representation, std::strtold(representation.c_str(), NULL));
   else if (IsDouble(representation))
     ConvertToNumber(representation, std::strtold(representation.c_str(), NULL));
+  else if (IsInfinite(representation))
+    ConvertFromInfinite(representation);
   else
     std::cout << "Unknown type" << std::endl;
 }
