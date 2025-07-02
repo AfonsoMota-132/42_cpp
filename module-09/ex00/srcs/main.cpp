@@ -15,6 +15,7 @@
 int main(void) {
   try {
     BitcoinExchange idk1;
+	idk1.exchange("input.txt");
   } catch (const std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
