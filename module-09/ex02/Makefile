@@ -6,16 +6,16 @@
 #    By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 10:24:34 by afogonca          #+#    #+#              #
-#    Updated: 2025/07/04 11:01:37 by afogonca         ###   ########.fr        #
+#    Updated: 2025/07/06 12:13:17 by afogonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = RPN 
+NAME = PmergeMe
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-SRCS = srcs/main.cpp srcs/RPN.cpp
+SRCS = srcs/main.cpp srcs/PmergeMe.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

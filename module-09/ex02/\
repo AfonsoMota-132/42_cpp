@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PMerge.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/04 10:59:01 by afogonca          #+#    #+#             */
-/*   Updated: 2025/07/04 11:02:04 by afogonca         ###   ########.fr       */
+/*   Created: 2025/07/06 11:13:30 by afogonca          #+#    #+#             */
+/*   Updated: 2025/07/06 11:28:56 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/RPN.hpp"
+#ifndef PMERGE_HPP
+#define PMERGE_HPP
 
-int main(int ac, char **av) {
-  if (ac == 2) {
-    RPN::rpn(av[1]);
-  } else {
-    std::cerr << "Error!\nIncorrect Number of Arguments" << std::endl;
-  }
-  return (0);
-}
+#include <string>
+#include <vector>
+#include <list>
+
+class PMerge {
+private:
+  PMerge(void);
+  PMerge(const PMerge &other);
+  PMerge &operator=(const PMerge &other);
+  ~PMerge(void);
+  static void sortVector(std::vector<unsigned int> vec);
+  static void sortList(std::list<unsigned int> list);
+public:
+  static void startPMerge(const std::string &other, 1);
+};
+#endif
