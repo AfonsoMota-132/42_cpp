@@ -6,16 +6,16 @@
 #    By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/03 10:24:34 by afogonca          #+#    #+#              #
-#    Updated: 2025/07/02 15:28:04 by afogonca         ###   ########.fr        #
+#    Updated: 2025/07/04 11:01:37 by afogonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = btc
+NAME = RPN 
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
-SRCS = srcs/main.cpp srcs/BitcoinExchange.cpp
+SRCS = srcs/main.cpp srcs/RPN.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)

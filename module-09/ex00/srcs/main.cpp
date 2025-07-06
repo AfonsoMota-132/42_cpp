@@ -12,12 +12,16 @@
 
 #include "../incs/BitcoinExchange.hpp"
 
-int main(void) {
-  try {
-    BitcoinExchange idk1;
-	idk1.exchange("input.txt");
-  } catch (const std::exception &e) {
-    std::cerr << e.what() << std::endl;
+int main(int ac, char **av) {
+  if (ac == 2) {
+    try {
+      BitcoinExchange idk1;
+      idk1.exchange(av[1]);
+    } catch (const std::exception &e) {
+      std::cerr << e.what() << std::endl;
+    }
+  } else {
+    std::cerr << "Error!\nIncorrect Number of Arguments" << std::endl;
   }
   return (0);
 }

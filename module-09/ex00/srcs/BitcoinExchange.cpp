@@ -162,8 +162,8 @@ void BitcoinExchange::exchange(const std::string &input) {
     std::string closerDate = it->first;
     double BtcValue = it->second;
     ++it;
-    if (BtcCount < 0)
-      std::cout << "[BitcoinExchange] Error: Invalid Bitcoin Count "
+    if (BtcCount < 0 || BtcCount > 1000)
+      std::cout << "[BitcoinExchange] Error: Invalid Bitcoin Count => " << BtcCount
                 << std::endl;
     else if (!checkDates(date))
       std::cout << "[BitcoinExchange] Error: bad input => " << date << " "
@@ -192,7 +192,7 @@ void BitcoinExchange::exchange(const std::string &input) {
       y = line.find('-', i + 1);
       int dayt = strToInt(closerDate.substr(i + 1, y));
       if (dateToDays(yeard, monthd, dayd) < dateToDays(yeart, montht, dayt)) {
-        std::cerr << "[BitcoinExchange] Error: No date Prior or Equal to "
+        std::cerr << "[BitcoinExchange] Error: No date Prior or Equal => "
                   << date << std::endl;
       } else {
         std::cout << date << " => " << BtcCount << " = " << BtcCount * BtcValue
