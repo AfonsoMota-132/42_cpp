@@ -6,7 +6,7 @@
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:07:07 by afogonca          #+#    #+#             */
-/*   Updated: 2025/07/02 15:28:44 by afogonca         ###   ########.fr       */
+/*   Updated: 2025/07/06 10:47:01 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,14 @@ int BitcoinExchange::isCloserDate(std::string Target, std::string Str1,
   int daysTarget = dateToDays(yearTarget, monthTarget, dayTarget);
   int days1 = dateToDays(yearStr1, monthStr1, dayStr1);
   int days2 = dateToDays(yearStr2, monthStr2, dayStr2);
-  int diff1 = abs(daysTarget - days1);
-  int diff2 = abs(daysTarget - days2);
-  if (diff1 == diff2){
-      if (days1 <= days2)
-        return 0;
-      else if (days2 < days1)
-        return 1;
+  if (days1 <= daysTarget && days2 <= daysTarget) {
+    if (days1 <= days2)
+      return (0);
+    else if (days1 > days2)
+      return (1);
+  } else if (days2 <= daysTarget) {
+    return (1);
   }
-  else if (diff1 < diff2)
-    return 0;
-  else if (diff2 < diff1)
-    return 1;
   return -1;
 };
 
@@ -167,20 +163,41 @@ void BitcoinExchange::exchange(const std::string &input) {
     double BtcValue = it->second;
     ++it;
     if (BtcCount < 0)
-      std::cout << "Error: Invalid Bitcoin Count "<< std::endl;
-    else if (!checkDates(date))
-      std::cout << "Error: bad input => " << date << " " << BtcCount
+      std::cout << "[BitcoinExchange] Error: Invalid Bitcoin Count "
                 << std::endl;
+    else if (!checkDates(date))
+      std::cout << "[BitcoinExchange] Error: bad input => " << date << " "
+                << BtcCount << std::endl;
     else {
       for (; it != last; ++it) {
         int tmp = isCloserDate(date, closerDate, it->first);
-        if (tmp == 0) {
+        if (tmp == 1) {
           closerDate = it->first;
           BtcValue = it->second;
         }
       }
-      std::cout << date << " => " << BtcCount << " = " << BtcCount * BtcValue
-                << std::endl;
+      int i = date.find('-');
+      int yeard = strToInt(date.substr(0, i));
+      int y = date.find('-', i + 1);
+      int monthd = strToInt(date.substr(i + 1, y));
+      i = y;
+      y = line.find('-', i + 1);
+      int dayd = strToInt(date.substr(i + 1, y));
+
+      i = date.find('-');
+      int yeart = strToInt(closerDate.substr(0, i));
+      y = date.find('-', i + 1);
+      int montht = strToInt(closerDate.substr(i + 1, y));
+      i = y;
+      y = line.find('-', i + 1);
+      int dayt = strToInt(closerDate.substr(i + 1, y));
+      if (dateToDays(yeard, monthd, dayd) < dateToDays(yeart, montht, dayt)) {
+        std::cerr << "[BitcoinExchange] Error: No date Prior or Equal to "
+                  << date << std::endl;
+      } else {
+        std::cout << date << " => " << BtcCount << " = " << BtcCount * BtcValue
+                  << std::endl;
+      }
     }
   }
 };
