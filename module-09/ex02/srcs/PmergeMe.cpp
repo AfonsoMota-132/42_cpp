@@ -6,7 +6,7 @@
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 11:31:08 by afogonca          #+#    #+#             */
-/*   Updated: 2025/07/06 13:13:41 by afogonca         ###   ########.fr       */
+/*   Updated: 2025/07/07 11:06:32 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,72 @@
 
 #include <list>
 
-void PmergeMe::binaryInsertList(std::list<unsigned int> &lst,
-                                unsigned int val) {
-  std::list<unsigned int>::iterator pos = lst.begin();
-  while (pos != lst.end() && *pos < val) {
-    ++pos;
+std::vector<unsigned int> PmergeMe::generateJacobsthal(size_t n) {
+  std::vector<unsigned int> seq;
+  seq.push_back(0);
+  seq.push_back(1);
+  while (seq.back() < n) {
+    size_t next = seq.back() + 2 * seq[seq.size() - 2];
+    seq.push_back(next);
   }
-  lst.insert(pos, val);
+  return seq;
 }
+
+void PmergeMe::buildInsertionOrder(size_t start, size_t end,
+                                   const std::vector<unsigned int> &jacobsthal,
+                                   std::vector<unsigned int> &order) {
+  if (start > end)
+    return;
+  size_t len = end - start + 1;
+  size_t j = 0;
+  for (size_t i = 0; i < jacobsthal.size(); ++i) {
+    if (jacobsthal[i] > len)
+      break;
+    j = i;
+  }
+  size_t mid = start + jacobsthal[j] - 1;
+  if (mid > end)
+    return;
+  order.push_back(mid);
+  if (mid > start)
+    buildInsertionOrder(start, mid - 1, jacobsthal, order);
+  buildInsertionOrder(mid + 1, end, jacobsthal, order);
+}
+
+std::vector<unsigned int> PmergeMe::getJacobsthalInsertionOrder(size_t k) {
+  std::vector<unsigned int> jacobsthal = generateJacobsthal(k);
+  std::vector<unsigned int> order;
+  buildInsertionOrder(0, k - 1, jacobsthal, order);
+  return order;
+}
+
+void PmergeMe::insertListSorted(std::list<unsigned int> &data,
+                                unsigned int number) {
+  std::list<unsigned int>::iterator it = data.begin();
+  while (it != data.end() && *it < number) {
+    ++it;
+  }
+  data.insert(it, number);
+}
+
+unsigned int PmergeMe::getNbrListIndex(std::list<unsigned int> &data,
+                                    unsigned int index) {
+  if (index >= data.size()) {
+    throw std::out_of_range("Index out of range in getNbrListIndex");
+  }
+
+  std::list<unsigned int>::iterator it = data.begin();
+  std::advance(it, index);
+  return *it;
+};
 
 void PmergeMe::sortList(std::list<unsigned int> &data) {
   size_t n = data.size();
   if (n <= 1)
     return;
   std::list<unsigned int> smaller, larger;
+  bool hasUnpaired = false;
+  unsigned int unpairedValue;
   std::list<unsigned int>::iterator it = data.begin();
   while (true) {
     std::list<unsigned int>::iterator first = it;
@@ -49,20 +101,35 @@ void PmergeMe::sortList(std::list<unsigned int> &data) {
       larger.push_back(*first);
     }
   }
-  sortList(larger);
-  for (std::list<unsigned int>::const_iterator sit = smaller.begin();
-       sit != smaller.end(); ++sit) {
-    binaryInsertList(larger, *sit);
+  if (data.size() % 2 == 1) {
+    hasUnpaired = true;
+    unpairedValue = data.back();
   }
+  std::vector<unsigned int> seqJacobsthal;
+  if (smaller.size() != 1) {
+    seqJacobsthal = getJacobsthalInsertionOrder(smaller.size());
+  }
+  sortList(larger);
+  if (larger.size() == 1) {
 
+    std::list<unsigned int>::iterator tmpNbr = smaller.begin();
+    insertListSorted(larger, *tmpNbr);
+  } else {
+    for (std::vector<unsigned int>::const_iterator it = seqJacobsthal.begin();
+         it != seqJacobsthal.end(); ++it) {
+      unsigned int tmpNbr;
+	  tmpNbr = getNbrListIndex(smaller, *it);
+      insertListSorted(larger, tmpNbr);
+    }
+  }
+  // if (hasUnpaired) {
+  //   std::vector<unsigned int>::iterator pos =
+  //       std::lower_bound(larger.begin(), larger.end(),
+  //       smaller[unpairedValue]);
+  //   larger.insert(pos, unpairedValue);
+  // }
   data = larger;
-}
-
-void PmergeMe::binaryInsertVector(std::vector<unsigned int> &vec,
-                                  unsigned int val) {
-  std::vector<unsigned int>::iterator pos =
-      std::lower_bound(vec.begin(), vec.end(), val);
-  vec.insert(pos, val);
+  data = larger;
 }
 
 void PmergeMe::sortVector(std::vector<unsigned int> &data) {
@@ -70,8 +137,11 @@ void PmergeMe::sortVector(std::vector<unsigned int> &data) {
   if (n <= 1)
     return;
   std::vector<unsigned int> smaller, larger;
+  bool hasUnpaired = false;
+  unsigned int unpairedValue;
 
-  for (size_t i = 0; i + 1 < n; i += 2) {
+  size_t i = 0;
+  for (i = 0; i + 1 < n; i += 2) {
     if (data[i] < data[i + 1]) {
       smaller.push_back(data[i]);
       larger.push_back(data[i + 1]);
@@ -80,14 +150,32 @@ void PmergeMe::sortVector(std::vector<unsigned int> &data) {
       larger.push_back(data[i]);
     }
   }
-
   if (n % 2 == 1) {
-    larger.push_back(data.back());
+    hasUnpaired = true;
+    unpairedValue = data.back();
+  }
+  std::vector<unsigned int> seqJacobsthal;
+  if (smaller.size() != 1) {
+    seqJacobsthal = getJacobsthalInsertionOrder(smaller.size());
   }
   sortVector(larger);
-  for (std::vector<unsigned int>::const_iterator it = smaller.begin();
-       it != smaller.end(); ++it) {
-    binaryInsertVector(larger, *it);
+
+  if (larger.size() == 1) {
+    std::vector<unsigned int>::iterator pos =
+        std::lower_bound(larger.begin(), larger.end(), smaller[0]);
+    larger.insert(pos, smaller[0]);
+  } else {
+    for (std::vector<unsigned int>::const_iterator it = seqJacobsthal.begin();
+         it != seqJacobsthal.end(); ++it) {
+      std::vector<unsigned int>::iterator pos =
+          std::lower_bound(larger.begin(), larger.end(), smaller[*it]);
+      larger.insert(pos, smaller[*it]);
+    }
+  }
+  if (hasUnpaired) {
+    std::vector<unsigned int>::iterator pos =
+        std::lower_bound(larger.begin(), larger.end(), smaller[unpairedValue]);
+    larger.insert(pos, unpairedValue);
   }
   data = larger;
 }
@@ -182,7 +270,7 @@ void PmergeMe::startPmergeMe(const std::string &input, ContainerType type) {
     }
     std::cout << std::endl;
     sortVector(vec);
-    std::cout << "Before: ";
+    std::cout << "After: ";
     for (size_t i = 0; i < vec.size(); i++) {
       std::cout << vec[i] << " ";
     }

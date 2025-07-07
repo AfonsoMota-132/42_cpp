@@ -6,7 +6,7 @@
 /*   By: afogonca <afogonca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 12:09:58 by afogonca          #+#    #+#             */
-/*   Updated: 2025/07/06 13:13:07 by afogonca         ###   ########.fr       */
+/*   Updated: 2025/07/07 10:34:21 by afogonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int ac, char **av) {
         (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_nsec - start.tv_nsec) / 1e3;
     std::cout << std::fixed << std::setprecision(5);
     std::cout << "List Elapsed time: " << elapsed_us << " us" << std::endl;
-    //
+
   } else {
     std::cerr << "Error!\nIncorrect Number of Arguments" << std::endl;
   }
