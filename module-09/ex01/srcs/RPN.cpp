@@ -107,7 +107,7 @@ void RPN::runRPN(const std::string _RPN, std::stack<double> Stack) {
   std::string tmp = nStr.substr(0, i);
   double nmb = strToLInt(tmp);
   if (verNmb(tmp)) {
-    if (Stack.size() >= 2 || nmb < 0 || nmb > 9)
+    if (nmb < 0 || nmb > 9)
       throw InvalidRPN();
     Stack.push(nmb);
   }
