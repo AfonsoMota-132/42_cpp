@@ -63,7 +63,7 @@ void PmergeMe::insertListSorted(std::list<unsigned int> &data,
 }
 
 unsigned int PmergeMe::getNbrListIndex(std::list<unsigned int> &data,
-                                    unsigned int index) {
+                                       unsigned int index) {
   if (index >= data.size()) {
     throw std::out_of_range("Index out of range in getNbrListIndex");
   }
@@ -118,16 +118,27 @@ void PmergeMe::sortList(std::list<unsigned int> &data) {
     for (std::vector<unsigned int>::const_iterator it = seqJacobsthal.begin();
          it != seqJacobsthal.end(); ++it) {
       unsigned int tmpNbr;
-	  tmpNbr = getNbrListIndex(smaller, *it);
+      tmpNbr = getNbrListIndex(smaller, *it);
       insertListSorted(larger, tmpNbr);
     }
   }
-  // if (hasUnpaired) {
-  //   std::vector<unsigned int>::iterator pos =
-  //       std::lower_bound(larger.begin(), larger.end(),
-  //       smaller[unpairedValue]);
-  //   larger.insert(pos, unpairedValue);
-  // }
+  if (hasUnpaired) {
+    std::cout << "BeforeU: ";
+    for (std::list<unsigned int>::iterator it = larger.begin(); it != larger.end();
+         ++it) {
+      std::cout << *it << " ";
+    }
+	std::cout << std::endl;
+    insertListSorted(larger, unpairedValue);
+    std::cout << "AfterU: ";
+    for (std::list<unsigned int>::iterator it = larger.begin(); it != larger.end();
+         ++it) {
+      std::cout << *it << " ";
+    }
+	std::cout << std::endl;
+    // larger.insert(pos, unpairedValue);
+    (void)unpairedValue;
+  }
   data = larger;
   data = larger;
 }
@@ -251,11 +262,13 @@ void PmergeMe::startList(std::list<unsigned int> &list,
   }
 };
 
-void PmergeMe::startPmergeMe(const std::string &input, ContainerType type) {
+void PmergeMe::startPmergeMe(int ac, char **av, ContainerType type) {
   if (type == VECTOR) {
     std::vector<unsigned int> vec;
     try {
-      startVector(vec, input);
+      for (int i = 1; i < ac; i++) {
+        startVector(vec, av[i]);
+      }
     } catch (const std::exception &e) {
       std::cerr << e.what() << std::endl;
       return;
@@ -278,7 +291,9 @@ void PmergeMe::startPmergeMe(const std::string &input, ContainerType type) {
   } else if (type == LIST) {
     std::list<unsigned int> list;
     try {
-      startList(list, input);
+      for (int i = 1; i < ac; i++) {
+        startList(list, av[i]);
+      }
     } catch (const std::exception &e) {
       std::cerr << e.what() << std::endl;
       return;
@@ -294,7 +309,7 @@ void PmergeMe::startPmergeMe(const std::string &input, ContainerType type) {
     }
     std::cout << std::endl;
     sortList(list);
-    std::cout << "Before: ";
+    std::cout << "After: ";
     for (std::list<unsigned int>::iterator it = list.begin(); it != list.end();
          ++it) {
       std::cout << *it << " ";

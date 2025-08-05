@@ -58,6 +58,6 @@ private:
   };
 
 public:
-  static void startPmergeMe(const std::string &input, ContainerType type);
+  static void startPmergeMe(int ac, char **av, ContainerType type);
 };
 #endif
