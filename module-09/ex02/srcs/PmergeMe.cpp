@@ -123,21 +123,7 @@ void PmergeMe::sortList(std::list<unsigned int> &data) {
     }
   }
   if (hasUnpaired) {
-    std::cout << "BeforeU: ";
-    for (std::list<unsigned int>::iterator it = larger.begin(); it != larger.end();
-         ++it) {
-      std::cout << *it << " ";
-    }
-	std::cout << std::endl;
     insertListSorted(larger, unpairedValue);
-    std::cout << "AfterU: ";
-    for (std::list<unsigned int>::iterator it = larger.begin(); it != larger.end();
-         ++it) {
-      std::cout << *it << " ";
-    }
-	std::cout << std::endl;
-    // larger.insert(pos, unpairedValue);
-    (void)unpairedValue;
   }
   data = larger;
   data = larger;
@@ -185,7 +171,7 @@ void PmergeMe::sortVector(std::vector<unsigned int> &data) {
   }
   if (hasUnpaired) {
     std::vector<unsigned int>::iterator pos =
-        std::lower_bound(larger.begin(), larger.end(), smaller[unpairedValue]);
+        std::lower_bound(larger.begin(), larger.end(), unpairedValue);
     larger.insert(pos, unpairedValue);
   }
   data = larger;
