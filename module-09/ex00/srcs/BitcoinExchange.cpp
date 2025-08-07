@@ -45,13 +45,12 @@ int BitcoinExchange::daysInMonth(int month, int year) {
 }
 
 int BitcoinExchange::dateToDays(int y, int m, int d) {
-  int days = 0;
+  int days = d;
   for (int i = 1; i < m; ++i)
     days += daysInMonth(i, y);
   for (int i = 0; i < y; ++i)
     days += isLeapYear(i) ? 366 : 365;
   return days;
-  (void)d;
 };
 
 int BitcoinExchange::isCloserDate(std::string Target, std::string Str1,
@@ -163,7 +162,10 @@ void BitcoinExchange::exchange(const std::string &input) {
     std::string closerDate = it->first;
     double BtcValue = it->second;
     ++it;
-    if (BtcCount < 0 || BtcCount > 1000)
+    if (line.find_first_of('|') == std::string::npos)
+      std::cout << "[BitcoinExchange] Error: bad input => '"
+                << line << "'"<<std::endl;
+    else if (BtcCount < 0 || BtcCount > 1000)
       std::cout << "[BitcoinExchange] Error: Invalid Bitcoin Count => "
                 << BtcCount << std::endl;
     else if (!checkDates(date))
